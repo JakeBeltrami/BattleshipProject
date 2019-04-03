@@ -14,7 +14,7 @@ Module DeploymentController
     Private Const TOP_BUTTONS_HEIGHT As Integer = 46
 
     Private Const PLAY_BUTTON_LEFT As Integer = 693
-    Private Const PLAY_BUTTON_WIDTH As Integer = 80    
+    Private Const PLAY_BUTTON_WIDTH As Integer = 80
 
     Private Const UP_DOWN_BUTTON_LEFT As Integer = 410
     Private Const LEFT_RIGHT_BUTTON_LEFT As Integer = 350

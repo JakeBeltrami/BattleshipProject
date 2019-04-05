@@ -1,68 +1,82 @@
-Imports SwinGameSDK
+Using System;
+Using System.Collections.Generic;
+Using System.Diagnostics;
+Using System.Globalization;
+Using System.IO;
+Using System.Linq;
+Using System.Reflection;
+Using System.Runtime.CompilerServices;
+Using System.Security;
+Using System.Text;
+Using System.Threading.Tasks;
+Using Microsoft.VisualBasic;
+Using SwinGameSDK;
 
-''' <summary>
-''' The battle phase is handled by the DiscoveryController.
-''' </summary>
-Module DiscoveryController
+/// <summary>
 
-    ''' <summary>
-    ''' Handles input during the discovery phase of the game.
-    ''' </summary>
-    ''' <remarks>
-    ''' Escape opens the game menu. Clicking the mouse will
-    ''' attack a location.
-    ''' </remarks>
-    Public Sub HandleDiscoveryInput()
-        If SwinGame.KeyTyped(KeyCode.VK_ESCAPE) Then
-            AddNewState(GameState.ViewingGameMenu)
-        End If
+/// ''' The battle phase is handled by the DiscoveryController.
 
-        If SwinGame.MouseClicked(MouseButton.LeftButton) Then
-            DoAttack()
-        End If
-    End Sub
+/// ''' </summary>
+Static Class DiscoveryController
+{
 
-    ''' <summary>
-    ''' Attack the location that the mouse if over.
-    ''' </summary>
-    Private Sub DoAttack()
-        Dim mouse As Point2D
+    /// <summary>
+    ///     ''' Handles input during the discovery phase of the game.
+    ///     ''' </summary>
+    ///     ''' <remarks>
+    ///     ''' Escape opens the game menu. Clicking the mouse will
+    ///     ''' attack a location.
+    ///     ''' </remarks>
+    Public Static void HandleDiscoveryInput()
+    {
+        If (SwinGame.KeyTyped(KeyCode.VK_ESCAPE))
+            AddNewState(GameState.ViewingGameMenu);
 
-        mouse = SwinGame.MousePosition()
+        If (SwinGame.MouseClicked(MouseButton.LeftButton))
+            DoAttack();
+    }
 
-        'Calculate the row/col clicked
-        Dim row, col As Integer
-        row = Convert.ToInt32(Math.Floor((mouse.Y - FIELD_TOP) / (CELL_HEIGHT + CELL_GAP)))
-        col = Convert.ToInt32(Math.Floor((mouse.X - FIELD_LEFT) / (CELL_WIDTH + CELL_GAP)))
+    /// <summary>
+    ///     ''' Attack the location that the mouse if over.
+    ///     ''' </summary>
+    Private Static void DoAttack()
+    {
+        Point2D mouse;
 
-        If row >= 0 And row < HumanPlayer.EnemyGrid.Height Then
-            If col >= 0 And col < HumanPlayer.EnemyGrid.Width Then
-                Attack(row, col)
-            End If
-        End If
-    End Sub
+        mouse = SwinGame.MousePosition();
 
-    ''' <summary>
-    ''' Draws the game during the attack phase.
-    ''' </summary>s
-    Public Sub DrawDiscovery()
-        Const SCORES_LEFT As Integer = 172
-        Const SHOTS_TOP As Integer = 157
-        Const HITS_TOP As Integer = 206
-        Const SPLASH_TOP As Integer = 256
+        // Calculate the row/col clicked
+        int row, col;
+        row = Convert.ToInt32(Math.Floor((mouse.Y - FIELD_TOP) / (double)(CELL_HEIGHT + CELL_GAP)));
+        col = Convert.ToInt32(Math.Floor((mouse.X - FIELD_LEFT) / (double)(CELL_WIDTH + CELL_GAP)));
 
-        If (SwinGame.KeyDown(KeyCode.VK_LSHIFT) or SwinGame.KeyDown(KeyCode.VK_RSHIFT)) And SwinGame.KeyDown(KeyCode.VK_C) Then
-            DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, True)
+        If (row >= 0 & row < HumanPlayer.EnemyGrid.Height)
+        {
+            If (col >= 0 & col < HumanPlayer.EnemyGrid.Width)
+                Attack(row, col);
+        }
+    }
+
+    /// <summary>
+    ///     ''' Draws the game during the attack phase.
+    ///     ''' </summary>s
+    Public Static void DrawDiscovery()
+    {
+        Const int SCORES_LEFT = 172;
+        Const int SHOTS_TOP = 157;
+        Const int HITS_TOP = 206;
+        Const int SPLASH_TOP = 256;
+
+        If ((SwinGame.KeyDown(KeyCode.VK_LSHIFT) | SwinGame.KeyDown(KeyCode.VK_RSHIFT)) & SwinGame.KeyDown(KeyCode.VK_C))
+            DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, true);
         Else
-            DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, False)
-        End If
+            DrawField(HumanPlayer.EnemyGrid, ComputerPlayer, false);
 
-        DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer)
-        DrawMessage()
+        DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
+        DrawMessage();
 
-        SwinGame.DrawText(HumanPlayer.Shots.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SHOTS_TOP)
-        SwinGame.DrawText(HumanPlayer.Hits.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, HITS_TOP)
-        SwinGame.DrawText(HumanPlayer.Missed.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SPLASH_TOP)
-    End Sub
-
-End Module
+        SwinGame.DrawText(HumanPlayer.Shots.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
+        SwinGame.DrawText(HumanPlayer.Hits.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, HITS_TOP);
+        SwinGame.DrawText(HumanPlayer.Missed.ToString(), Color.White, GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
+    }
+}

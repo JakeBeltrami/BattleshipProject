@@ -1,24 +1,11 @@
+using SwinGameSDK;
 /// <summary>
 /// The AIPlayer is a type of player. It can readomly deploy ships, it also has the
 /// functionality to generate coordinates and shoot at tiles
 /// </summary>
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
-using SwinGameSDK;
 
 public abstract class AIPlayer : Player
 {
-
     /// <summary>
     ///  Location can store the location of the last hit made by an
     ///  AI Player. The use of which determines the difficulty.
@@ -35,14 +22,8 @@ public abstract class AIPlayer : Player
         /// <returns>The row of the shot</returns>
         public int Row
         {
-            get
-            {
-                return _Row;
-            }
-            set
-            {
-                _Row = value;
-            }
+            get => _Row;
+            set => _Row = value;
         }
 
         /// <summary>
@@ -52,14 +33,8 @@ public abstract class AIPlayer : Player
         /// <returns>The column of the shot</returns>
         public int Column
         {
-            get
-            {
-                return _Column;
-            }
-            set
-            {
-                _Column = value;
-            }
+            get => _Column; 
+            set => _Column = value;
         }
 
         /// <summary>

@@ -1,57 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
-using SwinGameSDK;
+﻿using SwinGameSDK;
 
-
- //The EndingGameController is responsible for managing the interactions at the end  of a game.
-
+/// <summary>
+/// The EndingGameController is responsible for managing the interactions at the end
+/// of a game.
+/// </summary>
 
 static class EndingGameController
 {
 
-    
-   //Draw the end of the game screen, shows the win/lose state
-    
+    /// <summary>
+    /// Draw the end of the game screen, shows the win/lose state
+    /// </summary>
     public static void DrawEndOfGame()
     {
-        Rectangle toDraw;
+        Rectangle toDraw = new Rectangle();
         string whatShouldIPrint;
-
-        DrawField(ComputerPlayer.PlayerGrid, ComputerPlayer, true);
-        DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
+        
+        UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+        UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
         toDraw.X = 0;
         toDraw.Y = 250;
         toDraw.Width = SwinGame.ScreenWidth();
         toDraw.Height = SwinGame.ScreenHeight();
 
-        if (HumanPlayer.IsDestroyed)
+        if (GameController.HumanPlayer.IsDestroyed)
             whatShouldIPrint = "YOU LOSE!";
         else
             whatShouldIPrint = "-- WINNER --";
 
-        SwinGame.DrawTextLines(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
+        SwinGame.DrawText(whatShouldIPrint, Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, toDraw);
     }
 
-
- // Handle the input during the end of the game. Any interaction will result in it reading in the highsSwinGame.
- 
+    /// <summary>
+    /// Handle the input during the end of the game. Any interaction
+    /// will result in it reading in the highsSwinGame.
+    /// </summary>
     public static void HandleEndOfGameInput()
     {
-        if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.VK_RETURN) || SwinGame.KeyTyped(KeyCode.VK_ESCAPE))
+        if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.EscapeKey) || SwinGame.KeyTyped(KeyCode.EscapeKey))
         {
-            ReadHighScore(HumanPlayer.Score);
-            EndCurrentState();
+            HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
+            GameController.EndCurrentState();
         }
     }
 }

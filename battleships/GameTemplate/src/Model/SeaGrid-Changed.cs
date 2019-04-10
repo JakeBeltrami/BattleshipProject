@@ -7,6 +7,7 @@
 /// mask the position of the ships.
 /// </remarks>
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -24,7 +25,7 @@ public class SeaGrid : ISeaGrid
     private const int _WIDTH = 10;
     private const int _HEIGHT = 10;
 
-    private Dictionary<Dictionary<int, int>, Tile> _GameTiles;
+    private Dictionary<Dictionary<int, int>, Tile> _GameTiles = new Dictionary<Dictionary<int, int>, Tile>();
     private Dictionary<ShipName, Ship> _Ships;
     private int _ShipsKilled = 0;
 
@@ -69,7 +70,14 @@ public class SeaGrid : ISeaGrid
     /// <returns></returns>
     public TileView Item(int x, int y)
     {
-        return _GameTiles(x, y).View;
+        Dictionary<int,int> _COORDS = new Dictionary<int, int>();
+        _COORDS.Add(x,y);
+
+        if (_GameTiles.TryGetValue(_COORDS, out Tile result))
+            return result.View;
+
+        if(result == null) throw new ApplicationException("That TileView doesn't exist: Line 79 - Seagrid.cs");
+        return TileView.Miss;
     }
 
     /// <summary>
@@ -141,7 +149,7 @@ public class SeaGrid : ISeaGrid
             int currentCol = col;
             int dRow, dCol;
 
-            if (direction == direction.LeftRight)
+            if (direction == Direction.LeftRight)
             {
                 dRow = 0;
                 dCol = 1;
@@ -159,7 +167,12 @@ public class SeaGrid : ISeaGrid
                 if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height)
                     throw new InvalidOperationException("Ship can't fit on the board");
 
-                _GameTiles(currentRow, currentCol).Ship = newShip;
+                //just find the record in the dictionary
+                Dictionary<int, int> _COORDS = new Dictionary<int, int>();
+                _COORDS.Add(currentRow, currentCol);
+
+                if (_GameTiles.TryGetValue(_COORDS, out Tile result))
+                    result.Ship = newShip;
 
                 currentCol += dCol;
                 currentRow += dRow;
@@ -188,24 +201,33 @@ public class SeaGrid : ISeaGrid
     /// <returns>An attackresult (hit, miss, sunk, shotalready)</returns>
     public AttackResult HitTile(int row, int col)
     {
+        //just find the record in the dictionary
+        Dictionary<int, int> _COORDS = new Dictionary<int, int>();
+        _COORDS.Add(row, col);
+
+        Tile result;
+        _GameTiles.TryGetValue(_COORDS, out result);
+
+        if(result == null) throw new ApplicationException("That tile didn't exist - Line 208: HitTile");
+
         try
         {
             // tile is already hit
-            if (_GameTiles(row, col).Shot)
+            if (result.Shot)
                 return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + col + "," + row + "]!", row, col);
 
-            _GameTiles(row, col).Shoot();
+            result.Shoot();
 
             // there is no ship on the tile
-            if (_GameTiles(row, col).Ship == null)
+            if (result.Ship == null)
                 return new AttackResult(ResultOfAttack.Miss, "missed", row, col);
 
             // all ship's tiles have been destroyed
-            if (_GameTiles(row, col).Ship.IsDestroyed)
+            if (result.Ship.IsDestroyed)
             {
-                _GameTiles(row, col).Shot = true;
+                result.Shot = true;
                 _ShipsKilled += 1;
-                return new AttackResult(ResultOfAttack.Destroyed, _GameTiles(row, col).Ship, "destroyed the enemy's", row, col);
+                return new AttackResult(ResultOfAttack.Destroyed, result.Ship, "destroyed the enemy's", row, col);
             }
 
             // else hit but not destroyed

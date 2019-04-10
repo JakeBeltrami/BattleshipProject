@@ -1,4 +1,6 @@
-﻿static class GameLogic
+﻿using SwinGameSDK;
+
+/*static class GameLogic
 {
     public static void Main()
     {
@@ -23,4 +25,4 @@
         // Free Resources and Close Audio, to end the program.
         FreeResources();
     }
-}
+} */

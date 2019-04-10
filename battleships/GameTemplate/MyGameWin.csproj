@@ -36,9 +36,51 @@
   <PropertyGroup>
     <PrepareForRunDependsOn>$(PrepareForRunDependsOn);CopyLibsToOut</PrepareForRunDependsOn>
   </PropertyGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\animations\splash.txt" />
+    <Content Include="Resources\highscores.txt" />
+    <Content Include="Resources\images\deploy.jpg" />
+    <Content Include="Resources\images\deploy_button_hl.png" />
+    <Content Include="Resources\images\deploy_dir_button_horiz.png" />
+    <Content Include="Resources\images\deploy_dir_button_vert.png" />
+    <Content Include="Resources\images\deploy_play_button.png" />
+    <Content Include="Resources\images\deploy_randomize_button.png" />
+    <Content Include="Resources\images\discover.jpg" />
+    <Content Include="Resources\images\explosion.png" />
+    <Content Include="Resources\images\loader_empty.png" />
+    <Content Include="Resources\images\loader_full.png" />
+    <Content Include="Resources\images\main_page.jpg" />
+    <Content Include="Resources\images\ship_deploy_horiz_1.png" />
+    <Content Include="Resources\images\ship_deploy_horiz_2.png" />
+    <Content Include="Resources\images\ship_deploy_horiz_3.png" />
+    <Content Include="Resources\images\ship_deploy_horiz_4.png" />
+    <Content Include="Resources\images\ship_deploy_horiz_5.png" />
+    <Content Include="Resources\images\ship_deploy_vert_1.png" />
+    <Content Include="Resources\images\ship_deploy_vert_2.png" />
+    <Content Include="Resources\images\ship_deploy_vert_3.png" />
+    <Content Include="Resources\images\ship_deploy_vert_4.png" />
+    <Content Include="Resources\images\ship_deploy_vert_5.png" />
+    <Content Include="Resources\images\splash.png" />
+    <Content Include="Resources\images\SplashBack.png" />
+    <Content Include="Resources\images\SwinGameAni.jpg" />
+    <Content Include="Resources\sounds\hit.wav" />
+    <Content Include="Resources\sounds\horrordrone.mp3" />
+    <Content Include="Resources\sounds\lose.wav" />
+    <Content Include="Resources\sounds\sink.wav" />
+    <Content Include="Resources\sounds\watershot.wav" />
+    <Content Include="Resources\sounds\winner.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\DeploymentController.cs" />
+    <Compile Include="src\DiscoveryController.cs" />
+    <Compile Include="src\EndingGameController.cs" />
+    <Compile Include="src\GameController.cs" />
+    <Compile Include="src\GameLogic.cs" />
     <Compile Include="src\GameMain.cs" />
+    <Compile Include="src\GameResources.cs" />
+    <Compile Include="src\GameState.cs" />
+    <Compile Include="src\HighScoreController.cs" />
+    <Compile Include="src\MenuController.cs" />
     <Compile Include="src\Model\AIHardPlayer.cs" />
     <Compile Include="src\Model\AIMediumPlayer.cs" />
     <Compile Include="src\Model\AIOption.cs" />
@@ -55,6 +97,7 @@
     <Compile Include="src\Model\ShipName.cs" />
     <Compile Include="src\Model\Tile.cs" />
     <Compile Include="src\Model\TileView.cs" />
+    <Compile Include="src\UtilityFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
@@ -67,6 +110,8 @@
     <None Include="Resources\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\fonts\ffaccess.ttf" />
+    <None Include="Resources\sounds\SwinGameStart.ogg" />
     <WinLibs Include="lib\win32\*.dll" />
   </ItemGroup>
   <Target Name="CopyLibsToOut">

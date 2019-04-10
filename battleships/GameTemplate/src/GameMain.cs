@@ -13,18 +13,15 @@ namespace MyGame
             OpenGraphicsWindow("GameMain", 800, 600);
             ShowSwinGameSplashScreen();
             
+            GameResources.LoadResources();
+            PlayMusic(GameResources.GameMusic("Background"));
+
             //Run the game loop
-            while(false == WindowCloseRequested())
+            while (false == WindowCloseRequested())
             {
-                //Fetch the next batch of UI interaction
-                ProcessEvents();
-                
-                //Clear the screen and draw the framerate
-                ClearScreen(Color.White);
-                DrawFramerate(0,0);
-                
-                //Draw onto the screen
-                RefreshScreen(60);
+               
+                GameController.HandleUserInput();
+                GameController.DrawScreen();
             }
         }
     }

@@ -30,41 +30,41 @@ static class MenuController
     /// </remarks>
     private readonly static string[][] _menuStructure = new[] { new string[] { "PLAY", "SETUP", "SCORES", "QUIT" }, new string[] { "RETURN", "SURRENDER", "QUIT" }, new string[] { "EASY", "MEDIUM", "HARD" } };
 
-    private const static int MenuTop = 575;
-    private const static int MenuLeft = 30;
-    private const static int MenuGap = 0;
-    private const static int ButtonWidth = 75;
-    private const static int ButtonHeight = 15;
-    private const static int ButtonSep = ButtonWidth + MenuGap;
-    private const static int TextOffset = 0;
+    private const static int Menu_Top = 575;
+    private const static int Menu_Left = 30;
+    private const static int Menu_Gap = 0;
+    private const static int Button_Width = 75;
+    private const static int Button_Height = 15;
+    private const static int Button_Sep = Button_Width + Menu_Gap;
+    private const static int Text_Offset = 0;
 
-    private const static int MainMenu = 0;
-    private const static int GameMenu = 1;
-    private const static int SetupMenu = 2;
+    private const static int Main_Menu = 0;
+    private const static int Game_Menu = 1;
+    private const static int Setup_Menu = 2;
 
-    private const static int MainMenuPlayButton = 0;
-    private const static int MainMenuSetupButton = 1;
-    private const static int MainMenuTopScoresButton = 2;
-    private const static int MainMenuQuitButton = 3;
+    private const static int Main_Menu_Play_Button = 0;
+    private const static int Main_Menu_Setup_Button = 1;
+    private const static int Main_Menu_Top_Scores_Button = 2;
+    private const static int Main_Menu_Quit_Button = 3;
 
-    private const static int SetupMenuEasyButton = 0;
-    private const static int SetupMenuMediumButton = 1;
-    private const static int SetupMenuHardButton = 2;
-    private const static int SetupMenuExitButton = 3;
+    private const static int Setup_Menu_Easy_Button = 0;
+    private const static int Setup_Menu_Medium_Button = 1;
+    private const static int Setup_Menu_Hard_Button = 2;
+    private const static int Setup_Menu_Exit_Button = 3;
 
-    private const static int GameMenuReturnButton = 0;
-    private const static int GameMenuSurrenderButton = 1;
-    private const static int GameMenuQuitButton = 2;
+    private const static int Game_Menu_Return_Button = 0;
+    private const static int Game_Menu_Surrender_Button = 1;
+    private const static int Game_Menu_Quit_Button = 2;
 
-    private readonly static Color MenuColour = SwinGame.RGBAColor(2, 167, 252, 255);
-    private readonly static Color HighlightColour = SwinGame.RGBAColor(1, 57, 86, 255);
+    private readonly static Color Menu_Colour = SwinGame.RGBAColor(2, 167, 252, 255);
+    private readonly static Color Highlight_Colour = SwinGame.RGBAColor(1, 57, 86, 255);
 
     /// <summary>
     /// Handles the processing of user input when the main menu is showing
     /// </summary>
     public static void HandleMainMenuInput()
     {
-        HandleMenuInput(MainMenu, 0, 0);
+        HandleMenuInput(Main_Menu, 0, 0);
     }
 
     /// <summary>
@@ -73,10 +73,10 @@ static class MenuController
     public static void HandleSetupMenuInput()
     {
         bool handled;
-        handled = HandleMenuInput(SetupMenu, 1, 1);
+        handled = HandleMenuInput(Setup_Menu, 1, 1);
 
         if (!handled)
-            HandleMenuInput(MainMenu, 0, 0);
+            HandleMenuInput(Main_Menu, 0, 0);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ static class MenuController
     /// </remarks>
     public static void HandleGameMenuInput()
     {
-        HandleMenuInput(GameMenu, 0, 0);
+        HandleMenuInput(Game_Menu, 0, 0);
     }
 
     /// <summary>
@@ -134,7 +134,7 @@ static class MenuController
         // Clears the Screen to Black
         // SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
 
-        DrawButtons(MainMenu);
+        DrawButtons(Main_Menu);
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ static class MenuController
         // Clears the Screen to Black
         // SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
 
-        DrawButtons(GameMenu);
+        DrawButtons(Game_Menu);
     }
 
     /// <summary>
@@ -159,8 +159,8 @@ static class MenuController
         // Clears the Screen to Black
         // SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
 
-        DrawButtons(MainMenu);
-        DrawButtons(SetupMenu, 1, 1);
+        DrawButtons(Main_Menu);
+        DrawButtons(Setup_Menu, 1, 1);
     }
 
     /// <summary>
@@ -188,22 +188,22 @@ static class MenuController
         int btnTop;
         Rectangle toDraw;
 
-        btnTop = MenuTop - (MenuGap + ButtonHeight) * level;
+        btnTop = Menu_Top - (Menu_Gap + Button_Height) * level;
         int i;
         for (i = 0; i <= _menuStructure[menu].Length - 1; i++)
         {
             int btnLeft;
 
-            btnLeft = MenuLeft + ButtonSep * (i + xOffset);
+            btnLeft = Menu_Left + Button_Sep * (i + xOffset);
             // SwinGame.FillRectangle(Color.White, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT)
-            toDraw.X = btnLeft + TextOffset;
-            toDraw.Y = btnTop + TextOffset;
-            toDraw.Width = ButtonWidth;
-            toDraw.Height = ButtonHeight;
-            SwinGame.DrawTextLines(_menuStructure[menu](i), MenuColour, Color.Black, GameFont("Menu"), FontAlignment.AlignCenter, toDraw);
+            toDraw.X = btnLeft + Text_Offset;
+            toDraw.Y = btnTop + Text_Offset;
+            toDraw.Width = Button_Width;
+            toDraw.Height = Button_Height;
+            SwinGame.DrawTextLines(_menuStructure[menu](i), Menu_Colour, Color.Black, GameFont("Menu"), FontAlignment.AlignCenter, toDraw);
 
             if (SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset))
-                SwinGame.DrawRectangle(HighlightColour, btnLeft, btnTop, ButtonWidth, ButtonHeight);
+                SwinGame.DrawRectangle(Highlight_Colour, btnLeft, btnTop, Button_Width, Button_Height);
         }
     }
 
@@ -226,10 +226,10 @@ static class MenuController
     /// <returns>true if the mouse is over the button</returns>
     private static bool IsMouseOverMenu(int button, int level, int xOffset)
     {
-        int btnTop = MenuTop - (MenuGap + ButtonHeight) * level;
-        int btnLeft = MenuLeft + ButtonSep * (button + xOffset);
+        int btnTop = Menu_Top - (Menu_Gap + Button_Height) * level;
+        int btnLeft = Menu_Left + Button_Sep * (button + xOffset);
 
-        return IsMouseInRectangle(btnLeft, btnTop, ButtonWidth, ButtonHeight);
+        return IsMouseInRectangle(btnLeft, btnTop, Button_Width, Button_Height);
     }
 
     /// <summary>
@@ -241,19 +241,19 @@ static class MenuController
     {
         switch (menu)
         {
-            case MainMenu:
+            case Main_Menu:
                 {
                     PerformMainMenuAction(button);
                     break;
                 }
 
-            case SetupMenu:
+            case Setup_Menu:
                 {
                     PerformSetupMenuAction(button);
                     break;
                 }
 
-            case GameMenu:
+            case Game_Menu:
                 {
                     PerformGameMenuAction(button);
                     break;
@@ -269,25 +269,25 @@ static class MenuController
     {
         switch (button)
         {
-            case MainMenuPlayButton:
+            case Main_Menu_Play_Button:
                 {
                     StartGame();
                     break;
                 }
 
-            case MainMenuSetupButton:
+            case Main_Menu_Setup_Button:
                 {
                     AddNewState(GameState.AlteringSettings);
                     break;
                 }
 
-            case MainMenuTopScoresButton:
+            case Main_Menu_Top_Scores_Button:
                 {
                     AddNewState(GameState.ViewingHighScores);
                     break;
                 }
 
-            case MainMenuQuitButton:
+            case Main_Menu_Quit_Button:
                 {
                     EndCurrentState();
                     break;
@@ -303,19 +303,19 @@ static class MenuController
     {
         switch (button)
         {
-            case SetupMenuEasyButton:
+            case Setup_Menu_Easy_Button:
                 {
                     SetDifficulty(AIOption.Hard);
                     break;
                 }
 
-            case SetupMenuMediumButton:
+            case Setup_Menu_Medium_Button:
                 {
                     SetDifficulty(AIOption.Hard);
                     break;
                 }
 
-            case SetupMenuHardButton:
+            case Setup_Menu_Hard_Button:
                 {
                     SetDifficulty(AIOption.Hard);
                     break;
@@ -333,20 +333,20 @@ static class MenuController
     {
         switch (button)
         {
-            case GameMenuReturnButton:
+            case Game_Menu_Return_Button:
                 {
                     EndCurrentState();
                     break;
                 }
 
-            case GameMenuSurrenderButton:
+            case Game_Menu_Surrender_Button:
                 {
                     EndCurrentState(); // end game menu
                     EndCurrentState(); // end game
                     break;
                 }
 
-            case GameMenuQuitButton:
+            case Game_Menu_Quit_Button:
                 {
                     AddNewState(GameState.Quitting);
                     break;

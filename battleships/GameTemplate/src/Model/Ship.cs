@@ -107,7 +107,7 @@ public class Ship
         tiles = new List<Tile>();
 
         // gets the ship size from the enumarator
-        sizeOfShip = shipName;
+        sizeOfShip = (int) shipName;
     }
 
     /// <summary>
@@ -162,8 +162,8 @@ public class Ship
     /// <param name="col"></param>
     internal void Deployed(Direction direction, int row, int col)
     {
-        row = row;
-        col = col;
-        direction = direction;
+        this.row = row;
+        this.col = col;
+        this.direction = direction;
     }
 }

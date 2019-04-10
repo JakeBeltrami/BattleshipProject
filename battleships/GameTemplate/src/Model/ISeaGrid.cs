@@ -33,7 +33,9 @@ public interface ISeaGrid
     ///     ''' <param name="column">the column to access</param>
     ///     ''' <value>what the player can see at that location</value>
     ///     ''' <returns>what the player can see at that location</returns>
-    TileView Item { get; }
+    TileView Item(int row, int column);
+
+ 
 
     /// <summary>
     ///     ''' Mark the indicated tile as shot.

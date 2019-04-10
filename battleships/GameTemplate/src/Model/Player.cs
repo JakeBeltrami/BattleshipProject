@@ -16,7 +16,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 
-public class Player : IEnumerable<Ship>
+// public class Player : IEnumerable<Ship>
+
+public class Player
 {
     protected static Random _Random = new Random();
 
@@ -125,16 +127,25 @@ public class Player : IEnumerable<Ship>
     ///     ''' <value>The ship</value>
     ///     ''' <returns>The ship with the indicated name</returns>
     ///     ''' <remarks>The none ship returns nothing/null</remarks>
-  
 
-    public Ship Ship
+
+    public Ship Ship(ShipName name)
+    {
+        if (_Ships.TryGetValue(name, out Ship result))
+            return result;
+
+        return null;
+    }
+
+    //Old converted setter and getter.
+    /*public Ship Ship
     {
         get
         {
             if (name == ShipName.None)
                 return _Ships.Values[name];
         }
-    }
+    }*/
 
     /// <summary>
     ///     ''' The number of shots the player has made
@@ -217,7 +228,7 @@ public class Player : IEnumerable<Ship>
     public virtual AttackResult Attack()
     {
         // human does nothing here...
-        return null/* TODO Change to default(_) if this is not a reference type */;
+        return null;
     }
 
     /// <summary>

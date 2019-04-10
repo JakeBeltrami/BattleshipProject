@@ -46,10 +46,7 @@ public class Tile
     /// <returns>the row index of the tile</returns>
     public int Row
     {
-        get
-        {
-            return rowValue;
-        }
+        get => rowValue;
     }
 
     /// <summary>
@@ -59,10 +56,7 @@ public class Tile
     /// <returns>the column of the tile in the grid</returns>
     public int Column
     {
-        get
-        {
-            return columnValue;
-        }
+        get => columnValue;
     }
 
     /// <summary>
@@ -70,10 +64,7 @@ public class Tile
     /// </summary>
     public Ship Ship
     {
-        get
-        {
-            return ship;
-        }
+        get => ship;
         set
         {
             if (ship == null)
@@ -97,7 +88,7 @@ public class Tile
     {
         rowValue = row;
         columnValue = col;
-        ship = ship;
+        this.ship = ship;
     }
 
     /// <summary>
@@ -121,17 +112,17 @@ public class Tile
                 // and the tile has been hit
                 if (shot)
                     return TileView.Miss;
-                else
-                    // and the tile hasn't been hit
-                    return TileView.Sea;
+              
+                // and the tile hasn't been hit
+                return TileView.Sea;
             }
-            else
-                // if there is a ship and it has been hit
-                if (shot)
+           
+            // if there is a ship and it has been hit
+            if (shot)
                 return TileView.Hit;
-            else
-                // if there is a ship and it hasn't been hit
-                return TileView.Ship;
+           
+            // if there is a ship and it hasn't been hit
+            return TileView.Ship;
         }
     }
 

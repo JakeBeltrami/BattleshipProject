@@ -24,7 +24,7 @@ public class SeaGrid : ISeaGrid
     private const int _WIDTH = 10;
     private const int _HEIGHT = 10;
 
-    private Tile _GameTiles;
+    private Dictionary<Dictionary<int, int>, Tile> _GameTiles;
     private Dictionary<ShipName, Ship> _Ships;
     private int _ShipsKilled = 0;
 
@@ -40,10 +40,7 @@ public class SeaGrid : ISeaGrid
     /// <returns>The width of the sea grid.</returns>
     public int Width
     {
-        get
-        {
-            return _WIDTH;
-        }
+        get => _WIDTH;
     }
 
     /// <summary>
@@ -53,10 +50,7 @@ public class SeaGrid : ISeaGrid
     /// <returns>The height of the sea grid</returns>
     public int Height
     {
-        get
-        {
-            return _HEIGHT;
-        }
+        get =>_HEIGHT;
     }
 
     /// <summary>
@@ -64,10 +58,7 @@ public class SeaGrid : ISeaGrid
     /// </summary>
     public int ShipsKilled
     {
-        get
-        {
-            return _ShipsKilled;
-        }
+        get => _ShipsKilled;
     }
 
     /// <summary>
@@ -76,12 +67,9 @@ public class SeaGrid : ISeaGrid
     /// <param name="x">x coordinate of the tile</param>
     /// <param name="y">y coordiante of the tile</param>
     /// <returns></returns>
-    public TileView Item
+    public TileView Item(int x, int y)
     {
-        get
-        {
-            return _GameTiles(x, y).View;
-        }
+        return _GameTiles(x, y).View;
     }
 
     /// <summary>
@@ -111,7 +99,13 @@ public class SeaGrid : ISeaGrid
         for (i = 0; i <= Width - 1; i++)
         {
             for (int j = 0; j <= Height - 1; j++)
-                _GameTiles(i, j) = new Tile(i, j, null);
+            {
+                //Double Dictionary Standards.
+                Dictionary<int, int> _COORD = new Dictionary<int, int>();
+                _COORD.Add(i, j);
+                _GameTiles.Add(_COORD, new Tile(i, j, null));
+            }
+                
         }
 
         _Ships = ships;

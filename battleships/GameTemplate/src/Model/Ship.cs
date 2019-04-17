@@ -85,6 +85,9 @@ public class Ship
         }
     }
 
+	/// <summary>
+    /// The column location of the ship
+    /// </summary>
     public int Column
     {
         get
@@ -93,6 +96,9 @@ public class Ship
         }
     }
 
+	/// <summary>
+    /// Returns whether the ship is vertical or horizontal
+    /// </summary>
     public Direction Direction
     {
         get
@@ -101,6 +107,9 @@ public class Ship
         }
     }
 
+	/// <summary>
+    /// Ship constructor, assigns what type of ship it is, what tiles it's on and how large it is
+    /// </summary>
     public Ship(ShipName ship)
     {
         shipName = ship;
@@ -129,6 +138,9 @@ public class Ship
         tiles.Clear();
     }
 
+	/// <summary>
+    /// Reduces the 'health' of the ship by one
+    /// </summary>
     public void Hit()
     {
         hitsTaken = hitsTaken + 1;
@@ -146,6 +158,9 @@ public class Ship
         }
     }
 
+	/// <summary>
+    /// If the ship's health is 0 (the amount of hits it has taken is equal to its size) it returns true
+    /// </summary>
     public bool IsDestroyed
     {
         get

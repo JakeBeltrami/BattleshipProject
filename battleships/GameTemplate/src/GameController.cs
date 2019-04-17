@@ -125,7 +125,6 @@ public static class GameController
     /// <summary>
     ///Stops listening to the old game once a new game is started
     /// </summary>
-
     private static void EndGame()
     {
         // RemoveHandler _human.PlayerGrid.Changed, AddressOf GridChanged
@@ -145,6 +144,9 @@ public static class GameController
         SwinGame.RefreshScreen();
     }
 
+	/// <summary>
+    /// Create an explosion sprite and sound at the given row and column
+    /// </summary>
     private static void PlayHitSequence(int row, int column, bool showAnimation)
     {
         if (showAnimation)
@@ -155,6 +157,9 @@ public static class GameController
         UtilityFunctions.DrawAnimationSequence();
     }
 
+	/// <summary>
+    /// Create a splash sprite and sound at the given row and column
+    /// </summary>
     private static void PlayMissSequence(int row, int column, bool showAnimation)
     {
         if (showAnimation)

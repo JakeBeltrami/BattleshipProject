@@ -9,8 +9,7 @@ public enum TileView
     Sea,
 
     /// <summary>
-    /// The viewer knows that site was attacked but nothing
-    /// was hit
+    /// The viewer knows that site was attacked but nothing was hit
     /// </summary>
     Miss,
 
@@ -20,8 +19,7 @@ public enum TileView
     Ship,
 
     /// <summary>
-    /// The viewer knows that the site was attacked and
-    /// something was hit
+    /// The viewer knows that the site was attacked and something was hit
     /// </summary>
     Hit
 }

@@ -14,6 +14,9 @@ using SwinGameSDK;
 
 public static class GameResources
 {
+	/// <summary>
+    /// Loads the fonts that will be used by the game
+    /// </summary>
     private static void LoadFonts()
     {
         NewFont("ArialLarge", "arial.ttf", 80);
@@ -22,6 +25,9 @@ public static class GameResources
         NewFont("Menu", "ffaccess.ttf", 8);
     }
 
+	/// <summary>
+    /// Loads all of the sprites that will be used by the game
+    /// </summary>
     private static void LoadImages()
     {
         // Backgrounds
@@ -49,6 +55,12 @@ public static class GameResources
         NewImage("Splash", "splash.png");
     }
 
+	/// <summary>
+    /// Loads all the sounds that will be used by the game
+    /// </summary>
+	/// <TODO>
+	/// Siren noise needs to be added to the resources folder
+	/// </TODO>
     private static void LoadSounds()
     {
         NewSound("Error", "error.wav");
@@ -60,6 +72,9 @@ public static class GameResources
         NewSound("Lose", "lose.wav");
     }
 
+	/// <summary>
+    /// Loads the background music used in the game
+    /// </summary>
     private static void LoadMusic()
     {
         NewMusic("Background", "horrordrone.mp3");
@@ -154,6 +169,9 @@ public static class GameResources
         EndLoadingScreen(width, height);
     }
 
+	/// <summary>
+    /// Displays the loading screen, called while the game is loading
+    /// </summary>
     private static void ShowLoadingScreen()
     {
         _Background = SwinGame.LoadBitmap(SwinGame.PathToResource("SplashBack.png", ResourceKind.BitmapResource));
@@ -171,6 +189,12 @@ public static class GameResources
         PlaySwinGameIntro();
     }
 
+	/// <summary>
+    /// Plays the SwinGame intro, called on startup after loading is finished
+    /// </summary>
+	/// <TODO>
+	/// Add in the call for the SwinGame intro
+	/// </TODO>
     private static void PlaySwinGameIntro()
     {
         const int Ani_Cell_Count = 11;
@@ -190,6 +214,9 @@ public static class GameResources
         SwinGame.Delay(1500);
     }
 
+	/// <summary>
+    /// Displays a message to the user
+    /// </summary>
     private static void ShowMessage(string message, int number)
     {
         const int Tx = 310;
@@ -217,6 +244,9 @@ public static class GameResources
         SwinGame.ProcessEvents();
     }
 
+	/// <summary>
+    /// Clears the loading screen, called when the game has finished loading
+    /// </summary>
     private static void EndLoadingScreen(int width, int height)
     {
         SwinGame.ProcessEvents();
@@ -232,6 +262,9 @@ public static class GameResources
         SwinGame.ChangeScreenSize(width, height);
     }
 
+	/// <summary>
+    /// All of the 'New' functions are called to load their respective data
+    /// </summary>
     private static void NewFont(string fontName, string fileName, int size)
     {
         _Fonts.Add(fontName, SwinGame.LoadFont(SwinGame.PathToResource(fileName, ResourceKind.FontResource), size));
@@ -262,6 +295,9 @@ public static class GameResources
         _Music.Add(musicName, Audio.LoadMusic(SwinGame.PathToResource(fileName, ResourceKind.SoundResource)));
     }
 
+	/// <summary>
+    /// All of the 'Free' functions are called to clear their respective data
+    /// </summary>
     private static void FreeFonts()
     {
         foreach (var obj in _Fonts.Values)

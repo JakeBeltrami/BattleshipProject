@@ -79,6 +79,17 @@ public class Tile
     }
 
     /// <summary>
+    /// Co-ordinates Helper function
+    /// </summary>
+    /// <param name="row">the row on the grid</param>
+    /// <param name="col">the col on the grid</param>
+    public bool Match(int row, int col)
+    {
+        return (row == Row && col == Column);
+    }
+
+
+    /// <summary>
     /// The tile constructor will know where it is on the grid, and is its a ship
     /// </summary>
     /// <param name="row">the row on the grid</param>

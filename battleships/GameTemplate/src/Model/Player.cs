@@ -5,16 +5,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
 
 /// <TODO> Does this code below need to be fixed? </TODO>
 /// public class Player : IEnumerable<Ship>
@@ -39,14 +29,8 @@ public class Player
     /// <returns>The game that the player is playing</returns>
     public BattleShipsGame Game
     {
-        get
-        {
-            return _game;
-        }
-        set
-        {
-            _game = value;
-        }
+        get => _game;
+        set =>_game = value;
     }
 
     /// <summary>
@@ -55,10 +39,7 @@ public class Player
     /// <value>The enemy's sea grid</value>
     public ISeaGrid Enemy
     {
-        set
-        {
-            _enemyGrid = value;
-        }
+        set => _enemyGrid = value;
     }
 
 
@@ -69,8 +50,12 @@ public class Player
         /// for each ship add the ships name so the seagrid knows about them
         foreach (ShipName name in Enum.GetValues(typeof(ShipName)))
         {
-            if (name != ShipName.None)
-                _Ships.Add(name, new Ship(name));
+           //check to see if the ship is already in the array and continue if it has them
+           if(_Ships.ContainsKey(name)) continue;
+
+           if (name != ShipName.None)
+               _Ships.Add(name, new Ship(name));
+
         }
 
         RandomizeDeployment();
@@ -81,49 +66,27 @@ public class Player
     /// </summary>
     public ISeaGrid EnemyGrid
     {
-        get
-        {
-            return _enemyGrid;
-        }
-        set
-        {
-            _enemyGrid = value;
-        }
+        get => _enemyGrid;
+        set => _enemyGrid = value;
     }
 
     /// <summary>
     /// The PlayerGrid is just a normal SeaGrid where the players ships can be deployed and seen
     /// </summary>
-    public SeaGrid PlayerGrid
-    {
-        get
-        {
-            return _playerGrid;
-        }
-    }
+    public SeaGrid PlayerGrid => _playerGrid;
+  
 
     /// <summary>
     /// ReadyToDeploy returns true if all ships are deployed
     /// </summary>
-    public bool ReadyToDeploy
-    {
-        get
-        {
-            return _playerGrid.AllDeployed;
-        }
-    }
+    public bool ReadyToDeploy => _playerGrid.AllDeployed;
 
     /// <summary>
     /// Returns true if all ships have been destroyed
     /// </summary>
-    public bool IsDestroyed
-    {
-        get
-        {
-            /// Check if all ships are destroyed... -1 for the none ship
-            return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1;
-        }
-    }
+    /// Check if all ships are destroyed... -1 for the none ship
+    public bool IsDestroyed =>  _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1;
+
 
     /// <summary>
     /// Returns the Player's ship with the given name.
@@ -132,11 +95,6 @@ public class Player
     /// <value>The ship</value>
     /// <returns>The ship with the indicated name</returns>
     /// <remarks>The none ship returns nothing/null</remarks>
-
-
-    /// <summary>
-    /// Returns the ship with the corresponsing name
-    /// </summary>
     public Ship Ship(ShipName name)
     {
         if (_Ships.TryGetValue(name, out Ship result))
@@ -145,66 +103,31 @@ public class Player
         return null;
     }
 
-    //Old converted setter and getter.
-    /*public Ship Ship
-    {
-        get
-        {
-            if (name == ShipName.None)
-                return _Ships.Values[name];
-        }
-    }*/
-
     /// <summary>
     /// The number of shots the player has made
     /// </summary>
     /// <value>shots taken</value>
     /// <returns>the number of shots taken</returns>
-    public int Shots
-    {
-        get
-        {
-            return _shots;
-        }
-    }
+    public int Shots => _shots;
+ 
 
     /// <summary>
     /// The number of times the player has successfully hit a ship
     /// </summary>
-    public int Hits
-    {
-        get
-        {
-            return _hits;
-        }
-    }
+    public int Hits => _hits;
 
     /// <summary>
     /// Total number of shots that missed
     /// </summary>
     /// <value>miss count</value>
     /// <returns>the number of shots that have missed ships</returns>
-    public int Missed
-    {
-        get
-        {
-            return _misses;
-        }
-    }
+    public int Missed => _misses;
+
 
     /// <summary>
     /// Returns the score of the player
     /// </summary>
-    public int Score
-    {
-        get
-        {
-            if (IsDestroyed)
-                return 0;
-            else
-                return (Hits * 12) - Shots - (PlayerGrid.ShipsKilled * 20);
-        }
-    }
+    public int Score => (IsDestroyed) ? 0 : (Hits * 12) - Shots - (PlayerGrid.ShipsKilled * 20);
 
     /// <summary>
     /// Makes it possible to enumerate over the ships the player

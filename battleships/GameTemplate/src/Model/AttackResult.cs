@@ -17,10 +17,7 @@ public class AttackResult
     /// <returns>The result of the attack</returns>
     public ResultOfAttack Value
     {
-        get
-        {
-            return _Value;
-        }
+        get => _Value;
     }
 
     /// <summary>
@@ -30,10 +27,7 @@ public class AttackResult
     /// <returns>The ship, if any, involved in this result</returns>
     public Ship Ship
     {
-        get
-        {
-            return _Ship;
-        }
+        get => _Ship;
     }
 
     /// <summary>
@@ -44,10 +38,7 @@ public class AttackResult
     /// <remarks>A textual description of the result.</remarks>
     public string Text
     {
-        get
-        {
-            return _Text;
-        }
+        get => _Text;
     }
 
     /// <summary>
@@ -55,10 +46,7 @@ public class AttackResult
     /// </summary>
     public int Row
     {
-        get
-        {
-            return _Row;
-        }
+        get => _Row;
     }
 
     /// <summary>
@@ -66,10 +54,7 @@ public class AttackResult
     /// </summary>
     public int Column
     {
-        get
-        {
-            return _Column;
-        }
+        get => _Column;
     }
 
     /// <summary>

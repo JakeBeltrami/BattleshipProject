@@ -25,7 +25,7 @@ public class SeaGrid : ISeaGrid
     private const int _WIDTH = 10;
     private const int _HEIGHT = 10;
 
-    private Dictionary<Dictionary<int, int>, Tile> _GameTiles = new Dictionary<Dictionary<int, int>, Tile>();
+    private List<Tile> _GameTiles = new List<Tile>();
     private Dictionary<ShipName, Ship> _Ships;
     private int _ShipsKilled = 0;
 
@@ -70,14 +70,10 @@ public class SeaGrid : ISeaGrid
     /// <returns></returns>
     public TileView Item(int x, int y)
     {
-        Dictionary<int,int> _COORDS = new Dictionary<int, int>();
-        _COORDS.Add(x,y);
+        foreach (var t in _GameTiles)
+            if (t.Match(x, y)) return t.View;
 
-        if (_GameTiles.TryGetValue(_COORDS, out Tile result))
-            return result.View;
-
-        if(result == null) throw new ApplicationException("That TileView doesn't exist: Line 79 - Seagrid.cs");
-        return TileView.Miss;
+        throw new ApplicationException("That TileView doesn't exist: Line 79 - Seagrid.cs");
     }
 
     /// <summary>
@@ -103,19 +99,10 @@ public class SeaGrid : ISeaGrid
     public SeaGrid(Dictionary<ShipName, Ship> ships)
     {
         // fill array with empty Tiles
-        int i;
-        for (i = 0; i <= Width - 1; i++)
-        {
+        for (var i = 0; i <= Width - 1; i++)
             for (int j = 0; j <= Height - 1; j++)
-            {
-                //Double Dictionary Standards.
-                Dictionary<int, int> _COORD = new Dictionary<int, int>();
-                _COORD.Add(i, j);
-                _GameTiles.Add(_COORD, new Tile(i, j, null));
-            }
-                
-        }
-
+                _GameTiles.Add(new Tile(i, j, null));
+      
         _Ships = ships;
     }
 
@@ -167,12 +154,9 @@ public class SeaGrid : ISeaGrid
                 if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height)
                     throw new InvalidOperationException("Ship can't fit on the board");
 
-                //just find the record in the dictionary
-                Dictionary<int, int> _COORDS = new Dictionary<int, int>();
-                _COORDS.Add(currentRow, currentCol);
-
-                if (_GameTiles.TryGetValue(_COORDS, out Tile result))
-                    result.Ship = newShip;
+                foreach(var t in _GameTiles)
+                    if (t.Match(currentRow, currentCol))
+                       t.Ship = newShip;
 
                 currentCol += dCol;
                 currentRow += dRow;
@@ -201,12 +185,11 @@ public class SeaGrid : ISeaGrid
     /// <returns>An attackresult (hit, miss, sunk, shotalready)</returns>
     public AttackResult HitTile(int row, int col)
     {
-        //just find the record in the dictionary
-        Dictionary<int, int> _COORDS = new Dictionary<int, int>();
-        _COORDS.Add(row, col);
+        Tile result = null;
 
-        Tile result;
-        _GameTiles.TryGetValue(_COORDS, out result);
+        foreach(var t in _GameTiles)
+            if (t.Match(row, col))
+                result = t;
 
         if(result == null) throw new ApplicationException("That tile didn't exist - Line 208: HitTile");
 

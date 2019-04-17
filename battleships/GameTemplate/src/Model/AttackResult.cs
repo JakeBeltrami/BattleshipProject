@@ -1,6 +1,6 @@
-// <summary>
-//  AttackResult gives the result after a shot has been made.
-// </summary>
+/// <summary>
+///  AttackResult gives the result after a shot has been made.
+/// </summary>
 
 public class AttackResult
 {
@@ -11,7 +11,7 @@ public class AttackResult
     private int _Column;
 
     /// <summary>
-    ///     The result of the attack
+    /// The result of the attack
     /// </summary>
     /// <value>The result of the attack</value>
     /// <returns>The result of the attack</returns>

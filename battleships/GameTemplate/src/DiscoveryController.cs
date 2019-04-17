@@ -2,20 +2,17 @@
 using SwinGameSDK;
 
 /// <summary>
-
-///The battle phase is handled by the DiscoveryController.
-
+/// The battle phase is handled by the DiscoveryController.
 ///</summary>
 static class DiscoveryController
 {
 
     /// <summary>
-    ///Handles input during the discovery phase of the game.
-    ///</summary>
-    ///<remarks>
-    ///Escape opens the game menu. Clicking the mouse will
-    ///attack a location.
-    ///</remarks>
+    /// Handles input during the discovery phase of the game.
+    /// </summary>
+    /// <remarks>
+    /// Escape opens the game menu. Clicking the mouse will attack a location.
+    /// </remarks>
     public static void HandleDiscoveryInput()
     {
         if (SwinGame.KeyTyped(KeyCode.EscapeKey))
@@ -26,7 +23,7 @@ static class DiscoveryController
     }
 
     /// <summary>
-    /// Attack the location that the mouse if over.
+    /// Attack the location that the mouse is over.
     /// </summary>
     private static void DoAttack()
     {

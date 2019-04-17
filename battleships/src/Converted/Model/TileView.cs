@@ -1,3 +1,4 @@
+//The enumerator that tells the game how the tiles are visible
 public enum TileView
 {
     /// <summary>

@@ -273,11 +273,17 @@ static class UtilityFunctions
         SwinGame.DrawFramerate(675, 585);
     }
 
+	/// <summary>
+    /// Creates an explosion animation at the given row and column
+    /// </summary>
     public static void AddExplosion(int row, int col)
     {
-        AddAnimation(row, col, "Splash");
+        AddAnimation(row, col, "Explosion");
     }
 
+	/// <summary>
+    /// Creates a splash animation at the given row and column
+    /// </summary>
     public static void AddSplash(int row, int col)
     {
         AddAnimation(row, col, "Splash");
@@ -285,6 +291,9 @@ static class UtilityFunctions
 
     private static List<Sprite> _Animations = new List<Sprite>();
 
+	/// <summary>
+    /// Plays either an explosion or splash animated at the given row and column.
+    /// </summary>
     private static void AddAnimation(int row, int col, string image)
     {
         Sprite s;
@@ -301,6 +310,9 @@ static class UtilityFunctions
         _Animations.Add(s);
     }
 
+	/// <summary>
+    /// Updates and frees the animation sprites
+    /// </summary>
     public static void UpdateAnimations()
     {
         var ended = new List<Sprite>();
@@ -318,12 +330,18 @@ static class UtilityFunctions
         }
     }
 
+	/// <summary>
+    /// Draws all the sprites in the _Animations list
+    /// </summary>
     public static void DrawAnimations()
     {
         foreach (var s in _Animations)
             SwinGame.DrawSprite(s);
     }
 
+	/// <summary>
+    /// Draws animation sequences
+    /// </summary>
     public static void DrawAnimationSequence()
     {
         int i;

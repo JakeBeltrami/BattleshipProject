@@ -13,8 +13,8 @@ public class Player
 {
     protected static Random _Random = new Random();
 
-    private static Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>();
-    private SeaGrid _playerGrid = new SeaGrid(_Ships);
+    private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>();
+    private SeaGrid _playerGrid;
     private ISeaGrid _enemyGrid;
     protected BattleShipsGame _game;
 
@@ -42,12 +42,18 @@ public class Player
         set => _enemyGrid = value;
     }
 
-
+    /// <summary>
+    /// Player Constructor Class. Sets up the player game
+    /// </summary>
+    /// <value>The enemy's sea grid</value>
     public Player(BattleShipsGame controller)
     {
+        //collect the game controller and assign the private property.
         _game = controller;
+        //init the player grid
+        _playerGrid = new SeaGrid(_Ships);
 
-        /// for each ship add the ships name so the seagrid knows about them
+        // for each ship add the ships name so the seagrid knows about them
         foreach (ShipName name in Enum.GetValues(typeof(ShipName)))
         {
            //check to see if the ship is already in the array and continue if it has them

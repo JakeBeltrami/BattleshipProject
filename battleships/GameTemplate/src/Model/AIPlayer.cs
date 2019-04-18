@@ -51,28 +51,23 @@ public abstract class AIPlayer : Player
         /// <summary>
         /// Check if two locations are equal
         /// </summary>
-        /// <param name="here">location 1</param>
+        /// <param name="this">location 1</param>
         /// <param name="other">location 2</param>
         /// <returns>true if location 1 and location 2 are at the same spot</returns>
-        public static bool operator ==(Location here, Location other)
+        public static bool operator ==(Location @this, Location other)
         {
-            if (here != null || other != null)
-                return (here.Row == other.Row && here.Column == other.Column);
-
-            return false;
+            return !((object)@this is null) && !((object)other is null) && @this.Row == other.Row && @this.Column == other.Column;
         }
 
         /// <summary>
         /// Check if two locations are not equal
         /// </summary>
-        /// <param name="here">location 1</param>
+        /// <param name="this">location 1</param>
         /// <param name="other">location 2</param>
         /// <returns>true if location 1 and location 2 are not at the same spot</returns>
-        public static bool operator !=(Location here, Location other)
+        public static bool operator !=(Location @this, Location other)
         {
-            if(here !=null || other != null)
-                return here.Row != other.Row || here.Column != other.Column;
-            return true;
+            return (object)@this is null || (object)other is null || @this.Row != other.Row || @this.Column != other.Column;
         }
     }
 

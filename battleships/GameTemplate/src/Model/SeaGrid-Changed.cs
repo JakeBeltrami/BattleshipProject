@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 /// <summary>
 /// The SeaGrid is the grid upon which the ships are deployed.
 /// </summary>
@@ -6,20 +9,6 @@
 /// grid. This can be used in conjuncture with the SeaGridAdapter to
 /// mask the position of the ships.
 /// </remarks>
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
-
 public class SeaGrid : ISeaGrid
 {
     private const int _WIDTH = 10;
@@ -39,28 +28,22 @@ public class SeaGrid : ISeaGrid
     /// </summary>
     /// <value>The width of the sea grid.</value>
     /// <returns>The width of the sea grid.</returns>
-    public int Width
-    {
-        get => _WIDTH;
-    }
+    public int Width => _WIDTH;
+
 
     /// <summary>
     ///  The height of the sea grid
     /// </summary>
     /// <value>The height of the sea grid</value>
     /// <returns>The height of the sea grid</returns>
-    public int Height
-    {
-        get =>_HEIGHT;
-    }
+    public int Height =>_HEIGHT;
+   
 
     /// <summary>
     ///  ShipsKilled returns the number of ships killed
     /// </summary>
-    public int ShipsKilled
-    {
-        get => _ShipsKilled;
-    }
+    public int ShipsKilled => _ShipsKilled;
+   
 
     /// <summary>
     ///  Show the tile view

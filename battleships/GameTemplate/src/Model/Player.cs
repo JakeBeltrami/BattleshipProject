@@ -1,14 +1,11 @@
-/// <summary>
-/// Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
-/// all ships are deployed and if all ships are detroyed. A Player can also attach.
-/// </summary>
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <TODO> Does this code below need to be fixed? </TODO>
-/// public class Player : IEnumerable<Ship>
-
+/// <summary>
+/// Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
+/// all ships are deployed and if all ships are detroyed. A Player can also attach.
+/// </summary>
 public class Player
 {
     protected static Random _Random = new Random();

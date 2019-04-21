@@ -15,20 +15,14 @@ public class AttackResult
     /// </summary>
     /// <value>The result of the attack</value>
     /// <returns>The result of the attack</returns>
-    public ResultOfAttack Value
-    {
-        get => _Value;
-    }
+    public ResultOfAttack Value => _Value;
 
     /// <summary>
     ///     The ship, if any, involved in this result
     /// </summary>
     /// <value>The ship, if any, involved in this result</value>
     /// <returns>The ship, if any, involved in this result</returns>
-    public Ship Ship
-    {
-        get => _Ship;
-    }
+    public Ship Ship => _Ship;
 
     /// <summary>
     ///  A textual description of the result.
@@ -36,26 +30,17 @@ public class AttackResult
     /// <value>A textual description of the result.</value>
     /// <returns>A textual description of the result.</returns>
     /// <remarks>A textual description of the result.</remarks>
-    public string Text
-    {
-        get => _Text;
-    }
+    public string Text => _Text;
 
     /// <summary>
     ///  The row where the attack occurred
     /// </summary>
-    public int Row
-    {
-        get => _Row;
-    }
+    public int Row => _Row;
 
     /// <summary>
     ///  The column where the attack occurred
     /// </summary>
-    public int Column
-    {
-        get => _Column;
-    }
+    public int Column => _Column;
 
     /// <summary>
     ///  Set the _Value to the PossibleAttack value
@@ -75,10 +60,7 @@ public class AttackResult
     /// </summary>
     /// <param name="value">either hit, miss, destroyed, shotalready</param>
     /// <param name="ship">the ship information</param>
-    public AttackResult(ResultOfAttack value, Ship ship, string text, int row, int column) : this(value, text, row, column)
-    {
-        _Ship = ship;
-    }
+    public AttackResult(ResultOfAttack value, Ship ship, string text, int row, int column) : this(value, text, row, column) => _Ship = ship;
 
     /// <summary>
     ///  Displays the textual information about the attack

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+
+
 /// <summary>
 /// A Ship has all the details about itself. For example the shipname,
 /// size, number of hits taken and the location. Its able to add tiles,
@@ -6,19 +9,6 @@
 /// <remarks>
 /// Deployment information is supplied to allow ships to be drawn.
 /// </remarks>
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
-
 public class Ship
 {
     private ShipName shipName;
@@ -50,13 +40,7 @@ public class Ship
     /// </summary>
     /// <value>The number of hits the ship can take</value>
     /// <returns>The number of hits the ship can take</returns>
-    public int Size
-    {
-        get
-        {
-            return sizeOfShip;
-        }
-    }
+    public int Size => sizeOfShip;
 
     /// <summary>
     /// The number of hits that the ship has taken.
@@ -64,48 +48,24 @@ public class Ship
     /// <value>The number of hits the ship has taken.</value>
     /// <returns>The number of hits the ship has taken</returns>
     /// <remarks>When this equals Size the ship is sunk</remarks>
-    public int Hits
-    {
-        get
-        {
-            return hitsTaken;
-        }
-    }
+    public int Hits => hitsTaken;
 
     /// <summary>
     /// The row location of the ship
     /// </summary>
     /// <value>The topmost location of the ship</value>
     /// <returns>the row of the ship</returns>
-    public int Row
-    {
-        get
-        {
-            return row;
-        }
-    }
+    public int Row => row;
 
 	/// <summary>
     /// The column location of the ship
     /// </summary>
-    public int Column
-    {
-        get
-        {
-            return col;
-        }
-    }
+    public int Column => col;
 
 	/// <summary>
     /// Returns whether the ship is vertical or horizontal
     /// </summary>
-    public Direction Direction
-    {
-        get
-        {
-            return direction;
-        }
-    }
+    public Direction Direction => direction;
 
 	/// <summary>
     /// Ship constructor, assigns what type of ship it is, what tiles it's on and how large it is
@@ -150,24 +110,12 @@ public class Ship
     /// IsDeployed returns if the ships is deployed, if its deplyed it has more than
     /// 0 tiles
     /// </summary>
-    public bool IsDeployed
-    {
-        get
-        {
-            return tiles.Count > 0;
-        }
-    }
-
+    public bool IsDeployed => tiles.Count > 0;
+  
 	/// <summary>
     /// If the ship's health is 0 (the amount of hits it has taken is equal to its size) it returns true
     /// </summary>
-    public bool IsDestroyed
-    {
-        get
-        {
-            return Hits == Size;
-        }
-    }
+    public bool IsDestroyed => Hits == Size;
 
     /// <summary>
     /// Record that the ship is now deployed.

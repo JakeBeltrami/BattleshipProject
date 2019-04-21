@@ -156,7 +156,6 @@ C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\Battle
 C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\bin\Debug\MyGame.exe
 C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\bin\Debug\MyGame.pdb
 C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\bin\Debug\SwinGame.dll
-C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\obj\x86\Debug-Windows\MyGameWin.csprojAssemblyReference.cache
 C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\obj\x86\Debug-Windows\MyGameWin.csproj.CoreCompileInputs.cache
 C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\obj\x86\Debug-Windows\MyGame.exe.manifest
 C:\Users\reyno\OneDrive - Swinburne University\2019\DP1\Week Tasks\Week 5\BattleshipProject\battleships\GameTemplate\obj\x86\Debug-Windows\MyGame.application

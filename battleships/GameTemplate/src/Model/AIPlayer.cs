@@ -128,7 +128,7 @@ public abstract class AIPlayer : Player
             if (SwinGame.WindowCloseRequested())
                 return;
 
-            SwinGame.Delay(5);
+            SwinGame.Delay(2);
             SwinGame.ProcessEvents();
             SwinGame.RefreshScreen();
         }

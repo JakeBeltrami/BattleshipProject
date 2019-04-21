@@ -270,7 +270,7 @@ static class UtilityFunctions
                 }
         }
 
-        SwinGame.DrawFramerate(675, 585);
+        //SwinGame.DrawFramerate(675, 585);
     }
 
 	/// <summary>

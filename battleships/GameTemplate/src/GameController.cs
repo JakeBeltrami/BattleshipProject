@@ -34,39 +34,22 @@ public static class GameController
     ///</summary>
     ///<value>The current state</value>
     ///<returns>The current state</returns>
-    public static GameState CurrentState
-    {
-        get
-        {
-            return _state.Peek();
-        }
-    }
+    public static GameState CurrentState => _state.Peek();
 
     /// <summary>
     ///Returns the human player.
     ///</summary>
     ///<value>the human player</value>
     ///<returns>the human player</returns>
-    public static Player HumanPlayer
-    {
-        get
-        {
-            return _human;
-        }
-    }
+    public static Player HumanPlayer => _human;
 
     /// <summary>
     ///Returns the computer player.
     ///</summary>
     ///<value>the computer player</value>
     ///<returns>the conputer player</returns>
-    public static Player ComputerPlayer
-    {
-        get
-        {
-            return _ai;
-        }
-    }
+    public static Player ComputerPlayer => _ai;
+
 
     static GameController()
     {

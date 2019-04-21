@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SwinGameSDK;
 
@@ -350,5 +351,35 @@ static class UtilityFunctions
             UpdateAnimations();
             GameController.DrawScreen();
         }
+    }
+
+    /// <summary>
+    ///     shakes the window
+    /// </summary>
+    /// <param name="rep">the repetitions to go through (default: 10)</param>
+    /// <param name="sleep">the amount of time to sleep (default: 20)</param>
+    public static void ShakeScreen(int rep = 10, int sleep = 20)
+    {
+        //get the current location for the window
+        Point2D points = SwinGame.WindowPosition("GameMain");
+
+        //generate the random pointer
+        Random rnd = new Random(1337);
+
+        //give a shake amplitude.
+        const int shake_amplitude = 100;
+
+        //start the loop
+        for (int i = 0; i < rep; i++)
+        {
+            //reposition the screen based on that amplitude.
+            SwinGame.MoveWindow("GameMain", (int)Math.Round(points.X + rnd.Next(-shake_amplitude, shake_amplitude), 0), (int)Math.Round(points.Y + rnd.Next(-shake_amplitude, shake_amplitude),0));
+            //make sure we are still drawing and refreshing the screen (otherwise just shows blank screen.
+            GameController.DrawScreen();
+            //We also need time for the thread to catchup and for the user to see it. 
+            System.Threading.Thread.Sleep(sleep);
+        }
+
+        SwinGame.MoveWindow("GameMain", (int)points.X,(int) points.Y);
     }
 }

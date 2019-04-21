@@ -12,7 +12,8 @@ namespace MyGame
             //Open the game window
             OpenGraphicsWindow("GameMain", 800, 600);
             //ShowSwinGameSplashScreen();
-            
+           
+
             GameResources.LoadResources();
             PlayMusic(GameResources.GameMusic("Background"));
 

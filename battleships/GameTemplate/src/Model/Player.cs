@@ -187,6 +187,7 @@ public class Player
             case ResultOfAttack.Destroyed:
             case ResultOfAttack.Hit:
                 {
+                    UtilityFunctions.ShakeScreen(10, 20);
                     _hits += 1;
                     break;
                 }

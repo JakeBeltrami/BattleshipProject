@@ -257,7 +257,7 @@ public class AIHardPlayer : AIPlayer
                 {
                     current = t;
                     _LastHit.Remove(t);
-                    break;
+                    break; // bug here 
                 }
             }
 

@@ -74,9 +74,10 @@ static class HighScoreController
             string line;
 
             line = input.ReadLine();
-
-            s.Name = line.Substring(0, Name_Width);
-            s.Value = Convert.ToInt32(line.Substring(Name_Width));
+            string[] bothDimensions = line.Split(' ');
+            //s.Name = line.Substring(0, Name_Width);
+            s.Name = bothDimensions[0];
+            s.Value = Convert.ToInt32(bothDimensions[1]);
             _Scores.Add(s);
         }
         input.Close();
@@ -103,7 +104,7 @@ static class HighScoreController
         output.WriteLine(_Scores.Count);
 
         foreach (Score s in _Scores)
-            output.WriteLine(s.Name + s.Value);
+            output.WriteLine(s.Name + " " + s.Value);
 
         output.Close();
     }
@@ -144,7 +145,11 @@ static class HighScoreController
     public static void HandleHighScoreInput()
     {
         if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.EscapeKey) || SwinGame.KeyTyped(KeyCode.EscapeKey))
+        { // buf fix- save scores
+            SaveScores();
             GameController.EndCurrentState();
+        }
+        
     }
 
     /// <summary>

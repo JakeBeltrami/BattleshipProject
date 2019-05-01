@@ -304,13 +304,15 @@ static class MenuController
         {
             case Setup_Menu_Easy_Button:
                 {
-                    GameController.SetDifficulty(AIOption.Hard);
+                    // improved // change to easy 
+                    GameController.SetDifficulty(AIOption.Easy);
                     break;
                 }
 
             case Setup_Menu_Medium_Button:
                 {
-                    GameController.SetDifficulty(AIOption.Hard);
+                    // change to medium // improved
+                    GameController.SetDifficulty(AIOption.Medium);
                     break;
                 }
 
